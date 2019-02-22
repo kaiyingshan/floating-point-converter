@@ -9,20 +9,26 @@ Decimal.set({
 function hextofloat(){
 
     let hexStr = document.getElementById("hex").value;
-    // let exp = document.getElementById("exponent").value;
-    // let mts = document.getElementById("mantissa").value;
+    let exp = document.getElementById("exponent").value;
+    let mts = document.getElementById("mantissa").value;
+
+    procedure = document.getElementById("procedure");
+    document.getElementById("convert-result").innerHTML = "";
+    procedure.innerHTML = "Procedure: <br>";
 
     let dec = parseInt("0x" + hexStr, 16);
-    // exp = parseInt(exp, 10);
-    // mts = parseInt(mts, 10);
+    exp = parseInt(exp, 10);
+    mts = parseInt(mts, 10);
 
 
     if(isNaN(dec) || isNaN(exp) || isNaN(mts)){
         alert("Illegal Input!!!");return;
     }
     let bin = dec.toString(2);
-    let binStr = ("00000000000000000000000000000000" + bin).substr(-32);
+    let binStr = ("0000" + "0".repeat(1 + exp + mts) + bin).substr(-1 - exp - mts);
     
+    procedure.innerHTML += "Converted to binary: " + binStr + "<br>";
+
     let end = document.getElementsByName("endianess");
 
     let raw = "";
@@ -32,6 +38,9 @@ function hextofloat(){
         for(let i = binStr.length; i > 0; i -= 8){
             raw += binStr.substring(i - 8, i);
         }
+        
+        procedure.innerHTML += "Convert to big endian form: " + raw + "<br>";
+
     }else if(end[0].checked){
         //big endian
         raw = binStr;
@@ -42,8 +51,10 @@ function hextofloat(){
     }
 
     let sign = raw.substring(0, 1);
-    let exponent = raw.substring(1, 9);
-    let mantissa = raw.substring(9, 32);
+    let exponent = raw.substring(1, 1 + exp);
+    let mantissa = raw.substring(1 + exp, 1 + exp + mts);
+
+    procedure.innerHTML += 'Sign bit: ' + sign + ' <br>Exponent bits: ' + exponent + ' <br>Mantissa bits: ' + mantissa + '<br>';
 
     let exponentNum = 0;
     for(let i = 0; i < exponent.length; i++){
@@ -51,7 +62,7 @@ function hextofloat(){
             exponentNum += Math.pow(2, 7 - i);
         }
     }
-    exponentNum -= 127;
+    exponentNum -= Math.pow(2, exp - 1) - 1;
 
     let mantissaNum = 1;
     for(let i = 0; i < mantissa.length; i++){
@@ -62,7 +73,9 @@ function hextofloat(){
 
     let result = mantissaNum * Math.pow(2, exponentNum);
 
-    document.getElementById("convert-result").innerHTML=(sign === "1" ? "-" : "") + result;
+    procedure.innerHTML += "result = " + (sign === "1" ? "-" : "") + mantissaNum + " * " + "2^ " + exponentNum + "<br>";
+    
+    document.getElementById("convert-result").innerHTML = (sign === "1" ? "-" : "") + result;
 
 }
 

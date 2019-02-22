@@ -8,16 +8,19 @@
 
     <div>
         <p>Enter a hexadecimal number and get a 32 bit floating point number.</p>
-                0x<input type="text" id="hex"><br>
-                <!-- <input type="text" id="exponent" value="8"><br>
-                <input type="text" id="mantissa" value="23"><br> -->
+                0x<input type="text" id="hex"><br><br>
+                <p>Input number of bits for exponent</p>
+                <input type="text" id="exponent" value="8"><br><br>
+                <p>Input number of bits for mantissa</p>
+                <input type="text" id="mantissa" value="23"><br><br>
         
-                <input type="radio" name="endianess" value="big"> Big Endian<br>
+                <input type="radio" name="endianess" value="big" checked="checked"> Big Endian<br>
                 <input type="radio" name="endianess" value="little"> Little Endian<br>
                 <button onclick="hextofloat()">Submit
                 </button>
         
         <p id="convert-result"></p>
+        <p id="procedure"></p>
     </div>
     <p>-----------------------------------------------------------------------------------</p>
     <div>
@@ -29,6 +32,15 @@
         <p>Floating point operations are done with <a href="https://github.com/MikeMcl/decimal.js/">decimal.js</a>.</p>
     </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 <script src='node_modules/decimal.js/decimal.min.js'></script>
 <script src="convert.js"></script>
 
