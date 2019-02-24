@@ -26,23 +26,19 @@
     <div>
         <p>Enter a floating point number and get a (big endian) hexadecimal representation.</p>
             <input type="text" id="float"></input><br><br>
+            <p>Input number of bits for exponent</p>
+            <input type="text" id="exponent2" value="8"><br><br>
+            <p>Input number of bits for mantissa</p>
+            <input type="text" id="mantissa2" value="23"><br><br>
             <button onclick="floattohex()">Submit
             </button>
         <p id="hex-result"></p>
         <p>Floating point operations are done with <a href="https://github.com/MikeMcl/decimal.js/">decimal.js</a>.</p>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+
 <script src='node_modules/decimal.js/decimal.min.js'></script>
-<script src="convert.js"></script>
+<script src="convert.js?version=1"></script>
 
 </body>
 </html>

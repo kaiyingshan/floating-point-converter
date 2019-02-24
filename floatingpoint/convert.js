@@ -82,6 +82,19 @@ function hextofloat(){
 function floattohex(){
     
     let f_temp = document.getElementById("float").value;
+
+    let exp_bit = document.getElementById("exponent2").value;
+    let mts_bit = document.getElementById("mantissa2").value;
+
+    exp_bit = parseInt(exp_bit);
+    mts_bit = parseInt(mts_bit);
+
+    let f_float = parseFloat(f_temp);
+
+    // if(isNaN(f_float) || isNaN(exp_bit) || isNaN()){
+    //     alert("Illegal Input!!!");
+    // }
+
     if(f_temp == 0){
         document.getElementById("hex-result").innerHTML = "0x00000000";
         return;
@@ -107,7 +120,7 @@ function floattohex(){
 
     const two = new Decimal(2);
 
-    for(let i = 1; i <= 23; i++){
+    for(let i = 1; i <= mts_bit; i++){
         let temp = (two.pow(-i));//.add(two.pow(-24));
         if(mantissa.greaterThan(temp) || mantissa.equals(temp)){
             mStr += "1";
@@ -117,7 +130,7 @@ function floattohex(){
         }
     }
 
-    let bin = sign.toString(2) + (exp + 127).toString(2) + mStr;
+    let bin = sign.toString(2) + (exp + Math.pow(2, exp_bit - 1) - 1).toString(2) + mStr;
 
     let hex = parseInt(bin, 2).toString(16);
 
