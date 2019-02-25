@@ -55,7 +55,7 @@ function hexToFloat() {
     let mantissa = raw.substring(1 + exp, 1 + exp + mts);
 
     procedure.innerHTML += 'Sign bit: ' + sign + ' => ' + (sign === '1' ? 'Negative' : 'Positive');
-    procedure.innerHTML += '<br>Exponent bits: ' + exponent + '\\(\\ \\rightarrow\\ ';
+    procedure.innerHTML += '<br>Exponent bits: ' + exponent + '\\(\\ \\rightarrow\\ \\)';
 
     let exponentNum = 0;
     let first_exp = true;
@@ -63,26 +63,27 @@ function hexToFloat() {
         if (exponent.substring(i, i + 1) === '1') {
             exponentNum += 2 ** (exp - 1 - i);
             if (!first_exp) {
-                procedure.innerHTML += '+';
+                procedure.innerHTML += '\\(+\\)';
             } else {
                 first_exp = false;
             }
-            procedure.innerHTML += '2^{' + (exp - 1 - i) + '}';
+            procedure.innerHTML += '\\(2^{' + (exp - 1 - i) + '}\\)';
         }
     }
-    procedure.innerHTML += '\\ \\rightarrow\\ ' + exponentNum + '-(2^{' + (exp - 1) + '} - 1)';
+    procedure.innerHTML += '\\(\\ \\rightarrow\\ ' + exponentNum + '-(2^{' + (exp - 1) + '} - 1)';
 
     exponentNum -= 2 ** (exp - 1) - 1;
 
     procedure.innerHTML += '\\ =\\ ' + exponentNum + '\\)';
 
-    procedure.innerHTML += '<br>Mantissa bits: ' + mantissa;
-    procedure.innerHTML += '<br>';
+    procedure.innerHTML += '<br>Mantissa bits: ' + mantissa + '\\(\\rightarrow\\)';
 
     let mantissaNum = 1;
+    procedure.innerHTML += '\\(1\\)';
     for (let i = 0; i < mantissa.length; i++) {
         if (mantissa.substring(i, i + 1) === '1') {
             mantissaNum += 2 ** (-1 * (i + 1));
+            procedure.innerHTML += '\\(+\\frac{1}{2^{' + (i + 1) + '}}\\)';
         }
     }
 
@@ -97,6 +98,8 @@ function hexToFloat() {
     // result = mts * (2 ** exp)
 
     const result = mts_decimal.mul(Decimal.pow(two, exp_decimal));
+
+    procedure.innerHTML += '<br>';
 
     procedure.innerHTML +=
         'result = \\(' +
@@ -195,4 +198,4 @@ function floattohex() {
     let hex = parseInt(bin, 2).toString(16);
 
     document.getElementById('hex-result').innerHTML = '0x' + hex;
-}
+};

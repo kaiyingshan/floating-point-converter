@@ -37,51 +37,102 @@
     </style>
 </head>
 
-<body>
-    <div class="container" style="margin:3%">
-        <div class="row">
-            <div class="col">
-                <p>Enter a floating point number and get an IEEE 754 style hexadecimal representation with arbitrary
-                    exponent and mantissa bit.</p>
-    
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" >0x</span>
-                    </div>
-                    <input type="text" class="form-control" id="hex" value="23333333">
-                </div>
-    
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Exponent</span>
-                    </div>
-                    <input type="text" class="form-control" value="8" id="exponent">
-                </div>
-    
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Mantissa</span>
-                    </div>
-                    <input type="text" class="form-control" value="23" id="mantissa">
-                </div>
-    
-                <input type="radio" name="endianess" value="big" checked="checked"> Big Endian<br>
-                <input type="radio" name="endianess" value="little"> Little Endian<br>
+<body style="width:90%; margin: auto auto;">
 
-                <input type="checkbox" id="procedure" class="mb-3">Display Procedure<br>
 
-                <button type="button" class="btn button mb-3" onclick="hexToFloat()">Submit</button>
-            </div>
-            <div class="col">
-                <p id="convert-result"></p>
-                <p id="proc"></p>
-            </div>
+    <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#hex2float" role="tab">Hex to Float</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#float2hex" role="tab">Float to Hex</a>
+        </li>
     
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="hex2float" role="tabpanel">
+            <table style="margin: 3%;">
+                <tr>
+                    <td style="width: 40%; padding-right: 5%;">
+                        <p>Enter an hexadecimal and get a floating point number based on the IEEE 754 standard.</p>
+            
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">0x</span>
+                            </div>
+                            <input type="text" class="form-control" id="hex" value="23333333">
+                        </div>
+            
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Exponent</span>
+                            </div>
+                            <input type="text" class="form-control" value="8" id="exponent">
+                        </div>
+            
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Mantissa</span>
+                            </div>
+                            <input type="text" class="form-control" value="23" id="mantissa">
+                        </div>
+            
+                        <input type="radio" name="endianess" value="big" checked="checked"> Big Endian<br>
+                        <input type="radio" name="endianess" value="little"> Little Endian<br>
+            
+                        <input type="checkbox" id="procedure" class="mb-3">Display Procedure<br>
+            
+                        <button type="button" class="btn button mb-3" onclick="hexToFloat()">Submit</button>
+                    </td>
+                    <td style="width: 55%; vertical-align: top;">
+                        <p id="convert-result"></p>
+                        <p id="proc"></p>
+                    </td>
+            
+                </tr>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="float2hex" role="tabpanel" aria-labelledby="profile-tab">
+            <table style="margin: 3%;">
+                <tr>
+                    <td style="width: 40%; padding-right: 5%;">
+                        <p>
+                            Enter a floating point number and get an IEEE 754 style hexadecimal representation.
+                        </p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Float</span>
+                            </div>
+                            <input type="text" class="form-control" id="float" value="3.1415926">
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Exponent</span>
+                            </div>
+                            <input type="text" class="form-control" value="8" id="exponent2">
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Mantissa</span>
+                            </div>
+                            <input type="text" class="form-control" value="23" id="mantissa2">
+                        </div>
+                        <button type="button" class="btn button mb-3" onclick="floattohex()">Submit</button>
+                    </td>
+                    <td style="width: 55%; vertical-align: top;">
+                        <div id="hex-result"></div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
+
+
     <script src='node_modules/decimal.js/decimal.min.js'></script>
-    <script src="convert.js?version=2"></script>
+    <script type="text/javascript" src="convert.js?version=2"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
