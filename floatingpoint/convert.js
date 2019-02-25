@@ -1,10 +1,10 @@
 // import {Decimal} from 'decimal.js';
 
-// Decimal.set({
-//     precision: 100,
-//     toExpNeg: -100,
-//     toExpPos: 100
-// })
+Decimal.set({
+    precision: 100,
+    toExpNeg: -100,
+    toExpPos: 100
+});
 
 function hexToFloat() {
     const hexStr = document.getElementById('hex').value;
