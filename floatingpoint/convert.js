@@ -86,8 +86,17 @@ function hexToFloat() {
         }
     }
 
-    const result = mantissaNum * 2 ** exponentNum;
-    console.log(result);
+    const mts_decimal = new Decimal(mantissaNum);
+
+    const exp_decimal = new Decimal(exponentNum);
+
+    const two = new Decimal(2);
+
+    const ten = new Decimal(10);
+
+    // result = mts * (2 ** exp)
+
+    const result = mts_decimal.mul(Decimal.pow(two, exp_decimal));
 
     procedure.innerHTML +=
         'result = \\(' +
@@ -100,21 +109,30 @@ function hexToFloat() {
     let dec_coeff = result;
     let dec_exp = 0;
 
-    while (dec_coeff >= 10) {
-        dec_coeff /= 10;
+    while (dec_coeff.greaterThan(ten) || dec_coeff.equals(ten)) {
+        dec_coeff = dec_coeff.div(ten);
         dec_exp += 1;
     }
 
-    while (dec_coeff < 1) {
-        dec_coeff *= 10;
-        console.log(dec_coeff);
+    while (dec_coeff.lessThan(1)) {
+        dec_coeff = dec_coeff.mul(ten);
         dec_exp -= 1;
     }
 
-    document.getElementById('convert-result').innerHTML =
-        '\\(' + (sign === '1' ? '-' : '') + dec_coeff + '\\cdot 10^{' + dec_exp + '}\\)';
+    const zeros = new Decimal(100000000000000000000);
 
-    document.getElementById('convert-result').innerHTML = result;
+    document.getElementById('convert-result').innerHTML =
+        '\\(' +
+        (sign === '1' ? '-' : '') +
+        dec_coeff
+            .mul(zeros)
+            .round(5)
+            .div(zeros) +
+        '\\cdot 10^{' +
+        dec_exp +
+        '}\\)';
+
+    // document.getElementById('convert-result').innerHTML += mantissaNum * 2 ** exponentNum;
 
     if (!document.getElementById('procedure').checked) {
         procedure.innerHTML = '';

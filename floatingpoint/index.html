@@ -40,7 +40,7 @@
 <body>
     <div class="container" style="margin:3%">
         <div class="row">
-            <div class="col-sm">
+            <div class="col">
                 <p>Enter a floating point number and get an IEEE 754 style hexadecimal representation with arbitrary
                     exponent and mantissa bit.</p>
     
@@ -72,7 +72,7 @@
 
                 <button type="button" class="btn button mb-3" onclick="hexToFloat()">Submit</button>
             </div>
-            <div class="col-sm">
+            <div class="col">
                 <p id="convert-result"></p>
                 <p id="proc"></p>
             </div>
@@ -80,8 +80,8 @@
         </div>
     </div>
 
-
-    <script src="convert.js?version=1"></script>
+    <script src='node_modules/decimal.js/decimal.min.js'></script>
+    <script src="convert.js?version=2"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
