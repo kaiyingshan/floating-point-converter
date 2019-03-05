@@ -168,6 +168,11 @@ function floattohex() {
     let sign = f.greaterThan(0) ? 0 : 1;
     f = f.mul(f.greaterThan(0) ? 1 : -1);
 
+    let procedure = document.getElementById('hex-proc');
+    procedure.innerHTML = '';
+    procedure.innerHTML += 'Sign bit: ' + sign + '<br>';
+    procedure.innerHTML += 'Exponent bit: ';
+
     while (f.greaterThan(2)) {
         f = f.div(2);
         exp++;
@@ -195,7 +200,10 @@ function floattohex() {
 
     let bin = sign.toString(2) + (exp + 2 ** (exp_bit - 1) - 1).toString(2) + mStr;
 
+    procedure.innerHTML += exp + ' => ' + (exp + 2 ** (exp_bit - 1) - 1).toString(2);
+    procedure.innerHTML += 'mantissa: ' + mStr;
+
     let hex = parseInt(bin, 2).toString(16);
 
     document.getElementById('hex-result').innerHTML = '0x' + hex;
-};
+}
