@@ -170,7 +170,7 @@ function floattohex() {
 
     let procedure = document.getElementById('hex-proc');
     procedure.innerHTML = '';
-    procedure.innerHTML += 'Sign bit: ' + sign + '<br>';
+    procedure.innerHTML += 'Sign bit: \\(' + sign + '\\)<br>';
     procedure.innerHTML += 'Exponent bit: ';
 
     while (f.greaterThan(2)) {
@@ -183,14 +183,25 @@ function floattohex() {
         exp--;
     }
 
+    procedure.innerHTML += exp + ' => \\(' + (exp + 2 ** (exp_bit - 1) - 1).toString(2) + '\\)<br>';
+    procedure.innerHTML += 'Mantissa bit: ';
+
     let mantissa = f.minus(1);
     let mStr = '';
 
     const two = new Decimal(2);
 
+    let firstBit = true;
+
     for (let i = 1; i <= mts_bit; i++) {
         let temp = two.pow(-i);
         if (mantissa.greaterThan(temp) || mantissa.equals(temp)) {
+            if (firstBit) {
+                procedure.innerHTML += '\\(\\frac{' + 1 + '}{' + i + '}\\)';
+                firstBit = false;
+            } else {
+                procedure.innerHTML += '\\( + \\frac{' + 1 + '}{' + i + '}\\)';
+            }
             mStr += '1';
             mantissa = mantissa.minus(two.pow(-i));
         } else {
@@ -200,10 +211,15 @@ function floattohex() {
 
     let bin = sign.toString(2) + (exp + 2 ** (exp_bit - 1) - 1).toString(2) + mStr;
 
-    procedure.innerHTML += exp + ' => ' + (exp + 2 ** (exp_bit - 1) - 1).toString(2);
-    procedure.innerHTML += 'mantissa: ' + mStr;
+    procedure.innerHTML += '=> \\(' + mStr + '\\)';
 
     let hex = parseInt(bin, 2).toString(16);
 
     document.getElementById('hex-result').innerHTML = '0x' + hex;
+
+    if (!document.getElementById('procedure-hex').checked) {
+        procedure.innerHTML = '';
+    }
+
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 }
