@@ -223,3 +223,24 @@ function floattohex() {
 
     MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
 }
+
+function useFloat2() {
+    document.getElementById('exponent2').value = '8';
+    document.getElementById('mantissa2').value = '23';
+}
+
+function useDouble2() {
+    document.getElementById('exponent2').value = '11';
+    document.getElementById('mantissa2').value = '52';
+}
+
+function useFloat() {
+    document.getElementById('exponent').value = '8';
+    document.getElementById('mantissa').value = '23';
+}
+
+function useDouble() {
+    document.getElementById('exponent').value = '11';
+    document.getElementById('mantissa').value = '52';
+    console.log('???');
+}

@@ -1,3 +1,5 @@
 node_modules
 floatingpoint
 hds
+update.sh
+update-partial.sh

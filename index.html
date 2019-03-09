@@ -62,8 +62,11 @@
                             </div>
                             <input type="text" class="form-control" id="hex" value="23333333">
                         </div>
+
+                        <button type="button" class="btn button" onclick="useFloat()">Use Float</button>
+                        <button type="button" class="btn button" onclick="useDouble()">Use Double</button>
             
-                        <div class="input-group mb-3">
+                        <div class="input-group mt-3 mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Exponent</span>
                             </div>
@@ -105,8 +108,9 @@
                             </div>
                             <input type="text" class="form-control" id="float" value="3.1415926">
                         </div>
-                        
-                        <div class="input-group mb-3">
+                        <button type="button" class="btn button" onclick="useFloat2()">Use Float</button>
+                        <button type="button" class="btn button" onclick="useDouble2()">Use Double</button>
+                        <div class="input-group mt-3 mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Exponent</span>
                             </div>
@@ -134,7 +138,7 @@
 
 
     <script src='node_modules/decimal.js/decimal.min.js'></script>
-    <script type="text/javascript" src="convert.js?version=2"></script>
+    <script type="text/javascript" src="convert.js?version=3"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
